@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>OAuth Redirect</title>
+  </head>
+  <body>
+    <h1>OAuth Redirect Handler</h1>
+    <script>
+      // Parse the authorization code from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const authorizationCode = urlParams.get("code");
+
+      if (authorizationCode) {
+        // Send the authorization code back to your extension (e.g., via message passing)
+        // This could involve redirecting to a moz-extension URL with the code attached
+        window.location.href = `moz-extension://a5d56ac1-ecbe-4802-8ec7-8d6eafb94925/oauth-success.html?code=${authorizationCode}`;
+      } else {
+        // Handle error (e.g., no code in the URL)
+        document.body.innerHTML =
+          "<p>Authorization failed or was canceled.</p>";
+      }
+    </script>
+  </body>
+</html>
